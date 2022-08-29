@@ -1,16 +1,37 @@
-const http = require('http');
-const server = http.createServer((req, res) => {
-	if (req.url == '/') {
-		res.write('<h1>Hello World</h1>');
-		res.statusCode = 200;
-		res.end();
-	} else {
-		res.write('<h1>404 Not Found</h1>');
-		res.statusCode = 200;
-		res.end();
-	}
+// Common js module
+// Express import here
+const express = require('express');
+
+// Create a application
+const app = express();
+
+// In Memory DB
+const books = [
+	{
+		id: 1,
+		name: 'Java',
+		price: 500,
+	},
+	{
+		id: 2,
+		name: 'JavaScript',
+		price: 700,
+	},
+	{
+		id: 3,
+		name: 'C#',
+		price: 900,
+	},
+];
+
+// Create route
+app.get('/books', (req, res) => {
+	// Process Request
+	// Response Generator
+	res.json(books);
 });
 
-server.listen(8000, () => {
+// Listening Server
+app.listen(8000, (req, res) => {
 	console.log('Server is listening port on 8000');
 });
